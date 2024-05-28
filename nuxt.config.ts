@@ -8,4 +8,11 @@ export default defineNuxtConfig({
             pathPrefix: false,
         },
     ],
+    postcss: {
+        plugins: {
+            tailwindcss: {},
+            autoprefixer: {},
+        },
+    },
+    css: ['@/assets/styles/main.css'],
 });
