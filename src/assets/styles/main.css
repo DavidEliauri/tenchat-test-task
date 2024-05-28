@@ -11,6 +11,10 @@
     }
 
     body {
-        @apply font-Montserrat text-tenchat-black;
+        @apply bg-[#F5F8FF] font-Montserrat text-tenchat-black;
+    }
+
+    main {
+        @apply flex-1;
     }
 }
