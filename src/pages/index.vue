@@ -13,13 +13,39 @@
                 </h1>
 
                 <div
-                    class="flex items-center text-center text-[15px] text-[#71717A]"
+                    class="mb-[25px] flex items-center text-center text-[15px] text-[#71717A]"
                 >
                     <hr class="flex-1 border-[#71717A]" />
 
                     <div class="flex-none basis-[200px]">with email</div>
 
                     <hr class="flex-1 border-[#71717A]" />
+                </div>
+
+                <div class="space-y-[10px]">
+                    <BaseInput
+                        icon-src="/sprite.svg#envelope"
+                        placeholder="Email"
+                    />
+
+                    <BaseInput
+                        icon-src="/sprite.svg#shield"
+                        placeholder="Password"
+                        :is-password="true"
+                    />
+                </div>
+
+                <div class="mt-[25px]">
+                    <BaseButton>Log in</BaseButton>
+
+                    <div class="mt-5 text-center text-[#71717A]">
+                        Don`t have account?
+                        <a
+                            href="#"
+                            class="font-bold text-[#8098F9]"
+                            >Create an account</a
+                        >
+                    </div>
                 </div>
             </div>
         </div>
