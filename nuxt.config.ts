@@ -8,6 +8,7 @@ export default defineNuxtConfig({
             pathPrefix: false,
         },
     ],
+    modules: ['@pinia/nuxt'],
     postcss: {
         plugins: {
             tailwindcss: {},

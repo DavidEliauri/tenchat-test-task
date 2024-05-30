@@ -1,9 +1,23 @@
 <script setup lang="ts">
     const props = defineProps<{
+        modelValue: string;
         iconSrc: string;
         placeholder?: string;
         isPassword?: boolean;
     }>();
+
+    const emit = defineEmits<{
+        'update:modelValue': [value: string];
+    }>();
+
+    const value = computed({
+        get() {
+            return props.modelValue;
+        },
+        set(newValue) {
+            emit('update:modelValue', newValue);
+        },
+    });
 
     const type = ref<'text' | 'password'>(
         props.isPassword ? 'password' : 'text',
@@ -39,6 +53,7 @@
         </button>
 
         <input
+            v-model="value"
             :placeholder="placeholder"
             :type="type"
             :class="{

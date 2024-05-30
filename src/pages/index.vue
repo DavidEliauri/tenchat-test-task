@@ -1,4 +1,35 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+    import useAuthStore from '~/stores/AuthStore';
+    import DummyApi from '~/api/DummyApi/DummyApi';
+
+    const authStore = useAuthStore();
+
+    const isButtonDisabled = computed(() => {
+        if (!!authStore.email && !!authStore.password) {
+            return false;
+        }
+
+        return true;
+    });
+
+    const requestStatus = ref<'default' | 'pending' | 'success' | 'error'>(
+        'default',
+    );
+
+    async function login() {
+        requestStatus.value = 'pending';
+
+        try {
+            await DummyApi.login(authStore.email, authStore.password);
+
+            requestStatus.value = 'success';
+        } catch (e) {
+            console.error(e);
+
+            requestStatus.value = 'error';
+        }
+    }
+</script>
 
 <template>
     <div class="flex h-screen">
@@ -24,11 +55,13 @@
 
                 <div class="space-y-[10px]">
                     <BaseInput
+                        v-model="authStore.email"
                         icon-src="/sprite.svg#envelope"
                         placeholder="Email"
                     />
 
                     <BaseInput
+                        v-model="authStore.password"
                         icon-src="/sprite.svg#shield"
                         placeholder="Password"
                         :is-password="true"
@@ -36,7 +69,13 @@
                 </div>
 
                 <div class="mt-[25px]">
-                    <BaseButton>Log in</BaseButton>
+                    <BaseButton
+                        @click="login"
+                        :is-pending="requestStatus === 'pending'"
+                        :is-disabled="isButtonDisabled"
+                    >
+                        Log in
+                    </BaseButton>
 
                     <div class="mt-5 text-center text-[#71717A]">
                         Don`t have account?
