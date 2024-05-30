@@ -1,11 +1,15 @@
 <script setup lang="ts">
     defineProps<{
         isPending?: boolean;
+        isDisabled?: boolean;
     }>();
 </script>
 
 <template>
     <button
+        :class="{
+            'pointer-events-none opacity-50': isDisabled,
+        }"
         class="relative h-16 w-full rounded-[10px] bg-[#6172F3] fill-white font-Inter text-[20px] font-bold uppercase text-white"
     >
         <span

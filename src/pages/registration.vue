@@ -6,23 +6,20 @@
             class="flex flex-none basis-1/2 items-center pl-[calc((100vw_-_1200px)_/_2)] pr-[120px]"
         >
             <div class="w-full">
-                <h1
-                    class="mb-[25px] text-center text-[40px] font-bold leading-[25px]"
-                >
-                    Login to your Account
+                <h1 class="mb-[25px] text-[40px] font-bold leading-[25px]">
+                    Create your account
                 </h1>
 
-                <div
-                    class="mb-[25px] flex items-center text-center text-[15px] text-[#71717A]"
-                >
-                    <hr class="flex-1 border-[#71717A]" />
-
-                    <div class="flex-none basis-[200px]">with email</div>
-
-                    <hr class="flex-1 border-[#71717A]" />
+                <div class="mb-[25px] text-[15px] text-[#71717A]">
+                    Unlock all Features!
                 </div>
 
                 <div class="space-y-[10px]">
+                    <BaseInput
+                        icon-src="/sprite.svg#user"
+                        placeholder="Username"
+                    />
+
                     <BaseInput
                         icon-src="/sprite.svg#envelope"
                         placeholder="Email"
@@ -33,18 +30,24 @@
                         placeholder="Password"
                         :is-password="true"
                     />
+
+                    <BaseInput
+                        icon-src="/sprite.svg#shield"
+                        placeholder="Confirm Password"
+                        :is-password="true"
+                    />
                 </div>
 
                 <div class="mt-[25px]">
-                    <BaseButton>Log in</BaseButton>
+                    <BaseButton>Sign up</BaseButton>
 
                     <div class="mt-5 text-center text-[#71717A]">
-                        Don`t have account?
+                        You have account?
                         <NuxtLink
-                            href="/registration"
+                            href="/"
                             class="font-bold text-[#8098F9]"
                         >
-                            Create an account
+                            Login now
                         </NuxtLink>
                     </div>
                 </div>
@@ -60,19 +63,17 @@
             />
 
             <img
-                src="/images/login-screen-image.svg"
+                src="/images/registration.svg"
                 class="absolute left-[57px] top-1/2 block -translate-y-1/2"
             />
 
             <div
                 class="absolute left-[57px] top-[calc(50%_+_353px)] w-[606px] text-center text-[#E0EAFF]"
             >
-                <div class="text-[20px] font-bold">
-                    Connect with any device.
-                </div>
+                <div class="text-[20px] font-bold">Join us!</div>
 
                 <div class="font-medium">
-                    Everything you need is an internet connection.
+                    Just go through the boring process of creating an account.
                 </div>
             </div>
         </div>
