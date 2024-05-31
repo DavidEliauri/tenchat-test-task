@@ -1,6 +1,8 @@
 <script setup lang="ts">
     import useAuthStore from '~/stores/AuthStore';
-    import DummyApi from '~/api/DummyApi/DummyApi';
+    import DummyApi, { LoginError } from '~/api/DummyApi/DummyApi';
+
+    const router = useRouter();
 
     const authStore = useAuthStore();
 
@@ -16,15 +18,32 @@
         'default',
     );
 
+    const errorMessage = ref('');
+
     async function login() {
+        if (requestStatus.value === 'pending') {
+            return;
+        }
+
+        errorMessage.value = '';
+
         requestStatus.value = 'pending';
 
         try {
-            await DummyApi.login(authStore.email, authStore.password);
+            const token = await DummyApi.login(
+                authStore.email,
+                authStore.password,
+            );
+
+            authStore.token = token;
+
+            router.push('/verification');
 
             requestStatus.value = 'success';
         } catch (e) {
-            console.error(e);
+            if (e instanceof LoginError) {
+                errorMessage.value = e.fieldsErrors.message ?? '';
+            }
 
             requestStatus.value = 'error';
         }
@@ -76,6 +95,16 @@
                     >
                         Log in
                     </BaseButton>
+
+                    <BaseMessage :show="!!errorMessage">
+                        <div class="pt-5">
+                            <div
+                                class="rounded bg-[#fef2f2] p-4 text-[#991b1b]"
+                            >
+                                {{ errorMessage }}
+                            </div>
+                        </div>
+                    </BaseMessage>
 
                     <div class="mt-5 text-center text-[#71717A]">
                         Don`t have account?
