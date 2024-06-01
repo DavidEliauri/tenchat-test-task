@@ -1,4 +1,9 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+    const email = ref('');
+    const username = ref('');
+    const password = ref('');
+    const repeatPassword = ref('');
+</script>
 
 <template>
     <div class="flex h-screen">
@@ -16,22 +21,26 @@
 
                 <div class="space-y-[10px]">
                     <BaseInput
+                        v-model="username"
                         icon-src="/sprite.svg#user"
                         placeholder="Username"
                     />
 
                     <BaseInput
+                        v-model="email"
                         icon-src="/sprite.svg#envelope"
                         placeholder="Email"
                     />
 
                     <BaseInput
+                        v-model="password"
                         icon-src="/sprite.svg#shield"
                         placeholder="Password"
                         :is-password="true"
                     />
 
                     <BaseInput
+                        v-model="repeatPassword"
                         icon-src="/sprite.svg#shield"
                         placeholder="Confirm Password"
                         :is-password="true"
@@ -39,7 +48,12 @@
                 </div>
 
                 <div class="mt-[25px]">
-                    <BaseButton>Sign up</BaseButton>
+                    <BaseButton
+                        :is-disabled="
+                            !username || !email || !password || !repeatPassword
+                        "
+                        >Sign up</BaseButton
+                    >
 
                     <div class="mt-5 text-center text-[#71717A]">
                         You have account?
